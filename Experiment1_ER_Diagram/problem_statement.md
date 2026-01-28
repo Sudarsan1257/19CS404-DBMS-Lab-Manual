@@ -1,9 +1,11 @@
 # ER Diagram Workshop – Submission Template
 
 ## Objective
+
 To understand and apply ER modeling concepts by creating ER diagrams for real-world applications.
 
 ## Purpose
+
 Gain hands-on experience in designing ER diagrams that represent database structure including entities, relationships, attributes, and constraints.
 
 ---
@@ -11,9 +13,11 @@ Gain hands-on experience in designing ER diagrams that represent database struct
 # Scenario A: City Fitness Club Management
 
 **Business Context:**  
+
 FlexiFit Gym wants a database to manage its members, trainers, and fitness programs.
 
-**Requirements:**  
+**Requirements:**
+
 - Members register with name, membership type, and start date.  
 - Each member can join multiple programs (Yoga, Zumba, Weight Training).  
 - Trainers assigned to programs; a program may have multiple trainers.  
@@ -22,41 +26,52 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 - Payments tracked for memberships and sessions.
 
 ### ER Diagram:
-<img width="732" height="805" alt="image" src="https://github.com/user-attachments/assets/98b29e0d-6b1b-4865-af95-21916d80bb14" />
 
-### Entities and Attributes
-
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|    Member    |        MemberID ,Membership          |  Store member details     |
-|      Trainer  |      TrainerID,Name,Email,PhoneNumber              |     Store Trainer details  |
-|  Program      |      ProgramID,Cost              |  Programs like Zumbz/yoga     |
-|    Session    |       SessionID,SessionDate             |    Tracks attendance   |
-|    Payment    |          PaymentID,Amount          |   Tracks payments by members    |
+![WhatsApp Image 2025-09-27 at 09 33 49_e4e10339](https://github.com/user-attachments/assets/a259e7cb-eff2-40ee-8a5f-1c0c34dbd172)
 
 
-### Relationships and Constraints
+### Entities and Attributes:
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|       Member-Program       |     M:N       |      Optional(Member),Mandatory(Enrollment)         | Member may or may not join programs      |
-|          Trainer-Program    |      M:N      |            Optional(Trainer),Mandatory(Assignment)   |  Trainer may or may not run Programs     |
-|       Member–Trainer       |     1:N       |        Mandatory (Session), Optional (Member/Trainer)       |    Session must have a member & trainer   |
 
-### Assumptions
-- Program = recurring class; Session = specific instance.
-- Payments cover both memberships and sessions.
-- A Session links one Member and one Trainer.
- 
 
+| Entity            | Attributes (PK, FK)                                             | Notes                               |
+|-------------------|-----------------------------------------------------------------|-------------------------------------|
+| Member            | MemberID (PK), Name, MembershipType, StartDate                  | Gym member details                  |
+| Program           | ProgramID (PK), ProgramName                                     | Fitness program details             |
+| Trainer           | TrainerID (PK), Name, Specialization                            | Fitness trainer info                |
+| Session           | SessionID (PK), SessionDate, SessionTime, Status                | Personal training session details   |
+| Payment           | PaymentID (PK), MemberID (FK), Amount, PaymentDate, PaymentType | Financial transaction tracking      |
+| Enrollment        | MemberID (FK, PK), ProgramID (FK, PK)                           | Links members to programs           |
+| ProgramAssignment | TrainerID (FK, PK), ProgramID (FK, PK)                          | Links trainers to programs          |
+| Booking           | MemberID (FK, PK), TrainerID (FK, PK), SessionID (FK, PK)       | Links members, trainers, sessions   |
+
+### Relationships and Constraints:
+
+
+
+| Relationship                     | Cardinality | Participation                         | Notes                                                                 |
+|----------------------------------|-------------|--------------------------------------|----------------------------------------------------------------------|
+| Member ENROLLS IN Program        | M:N         | Total (Enrollment), Partial (Member, Program) | Members can join multiple programs; programs have multiple members.   |
+| Trainer LEADS Program            | M:N         | Partial (Trainer), Total (Program)   | Trainers lead multiple programs; programs have multiple trainers.     |
+| Member BOOKS Session WITH Trainer| M:N         | Partial (Member, Trainer), Total (Session) | Members book sessions with trainers; trainers conduct sessions.       |
+| Member MAKES Payment             | 1:N         | Total (Payment), Partial (Member)    | Payments by a member; a member makes many payments.                  |
+
+
+### Assumptions:
+
+- IDs are primary keys and unique.
+- Junction tables resolve all M:N relationships.
+- Session status covers attendance.
 ---
 
 # Scenario B: City Library Event & Book Lending System
 
 **Business Context:**  
+
 The Central Library wants to manage book lending and cultural events.
 
 **Requirements:**  
+
 - Members borrow books, with loan and return dates tracked.  
 - Each book has title, author, and category.  
 - Library organizes events; members can register.  
@@ -65,43 +80,65 @@ The Central Library wants to manage book lending and cultural events.
 - Overdue fines apply for late returns.
 
 ### ER Diagram:
-<img width="647" height="763" alt="Screenshot 2025-11-14 142501" src="https://github.com/user-attachments/assets/51955ef7-587e-4d1e-9801-c25fedc88be8" />
 
 
-### Entities and Attributes
+![WhatsApp Image 2025-09-27 at 09 33 58_a8c56bed](https://github.com/user-attachments/assets/c0852e32-8353-44af-b100-2a52a3815f38)
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|    Member    |      MemberID (PK), Name, Address, Phone, Email              |   Library members    |
-|      Book  |      BookID (PK), Title, Author, Category, ISBN, PubYear              |    Books in collection   |
-|    Loan    |        LoanID (PK), LoanDate, DueDate, ReturnDate, FineAmount, MemberID (FK), BookID (FK)            |     Tracks book borrowing  |
-|     Event   |         EventID (PK), Name, Description, EventDate, StartTime, EndTime, RoomID (FK)           |    Library cultural events   |
-|    Speaker    |         SpeakerID (PK), Name, Bio, ContactInfo           |    Event speakers/authors   |
-|      Booking  |             BookingID (PK), BookingDate, StartTime, EndTime, RoomID (FK), MemberID (FK)       |    Study room reservations   |
 
-### Relationships and Constraints
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|      Member–Book        |       M:N     |        Mandatory for Loan, Optional for Member/Book       |   Members borrow books    |
-|    Member–Event          |      M:N      |     Mandatory for Registration, Optional for Member/Event          |   Members register for events    |
-|   Event–Speaker  |      M:N      |    Mandatory for EventSpeaker, Optional for Event/Speaker |    Events may have multiple speakers   |
-|   Event–Room           |      1:N      |    Mandatory for Event, Optional for Room           |  Each event in one room     |
-|  Room–Booking            |      1:N   |      Mandatory for Booking, Optional for Room         |   Rooms booked for study by members    |
+### Entities and Attributes:
 
-### Assumptions
-- Overdue fines are stored per Loan record.
-- BookCopy not modeled
-- Rooms serve both events and study bookings.
+ 
 
+| Entity        | Attributes                                                                 | Notes                                |
+|---------------|----------------------------------------------------------------------------|--------------------------------------|
+| Member        | MemberID (PK), Name, Address, ContactInfo                                  | Library patron details               |
+| Book          | BookID (PK), Title, Author, Category                                       | Cataloged book details               |
+| Loan          | LoanID (PK), BookID (FK), MemberID (FK), LoanDate, ReturnDate, DueDate     | Records book borrowing               |
+| Fine          | FineID (PK), LoanID (FK), Amount, PaymentDate, Status                      | Tracks overdue penalties             |
+| Event         | EventID (PK), EventName, EventDate, EventTime                              | Library cultural event info          |
+| Speaker       | SpeakerID (PK), Name, Bio                                                  | Details of event speakers/authors    |
+| Room          | RoomID (PK), RoomNumber, Capacity, Type                                    | Library room details (e.g., study)   |
+| Registration  | MemberID (FK, PK), EventID (FK, PK), RegistrationDate                      | Links members to events              |
+| EventSpeaker  | EventID (FK, PK), SpeakerID (FK, PK)                                       | Links events to speakers             |
+| EventRoom     | EventID (FK, PK), RoomID (FK, PK), BookingDate                             | Links events to rooms used           |
+
+
+### Relationships and Constraints:
+
+
+
+| Entity        | Attributes (PK, FK)                                                   | Notes                                   |
+|---------------|----------------------------------------------------------------------|-----------------------------------------|
+| Member        | MemberID (PK), Name, Address, ContactInfo                             | Library patron details                   |
+| Book          | BookID (PK), Title, Author, Category                                  | Cataloged book details                   |
+| Loan          | LoanID (PK), BookID (FK), MemberID (FK), LoanDate, ReturnDate, DueDate | Records book borrowing                   |
+| Fine          | FineID (PK), LoanID (FK), Amount, PaymentDate, Status                 | Tracks overdue penalties                 |
+| Event         | EventID (PK), EventName, EventDate, EventTime                         | Library cultural event info              |
+| Speaker       | SpeakerID (PK), Name, Bio                                             | Details of event speakers/authors        |
+| Room          | RoomID (PK), RoomNumber, Capacity, Type                               | Library room details (e.g., event, study)|
+| Registration  | MemberID (FK, PK), EventID (FK, PK), RegistrationDate                 | Links members to events                  |
+| EventSpeaker  | EventID (FK, PK), SpeakerID (FK, PK)                                  | Links events to speakers                 |
+| EventRoom     | EventID (FK, PK), RoomID (FK, PK), BookingDate                        | Links events to rooms used               |
+
+
+### Assumptions:
+
+- Each book copy is unique via BookID.
+- lines are only for late returns.
+- Rooms can serve multiple purposes (events, study).
+- M:N relationships are resolved with junction tables.
+- All IDs are unique primary keys.
 ---
 
 # Scenario C: Restaurant Table Reservation & Ordering
 
 **Business Context:**  
+
 A popular restaurant wants to manage reservations, orders, and billing.
 
 **Requirements:**  
+
 - Customers can reserve tables or walk in.  
 - Each reservation includes date, time, and number of guests.  
 - Customers place food orders linked to reservations.  
@@ -110,39 +147,50 @@ A popular restaurant wants to manage reservations, orders, and billing.
 - Waiters assigned to serve reservations.
 
 ### ER Diagram:
-<img width="598" height="744" alt="image" src="https://github.com/user-attachments/assets/995c215b-e577-4a7d-bedd-095dc6cef1e9" />
 
 
-### Entities and Attributes
-
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|    Customer    | CustomerID (PK), Name, Email, Phone |  Stores customer info     |
-|   Waiter     | WaiterID (PK), Name, Shift, ContactInfo|   Waiter details    |
-|    Table    | TableID (PK), TableNumber, Capacity, Location  |Restaurant tables |
-|  Reservation   | ReservationID (PK), ReservationDate, ReservationTime, NoOfGuests, Status, CustomerID (FK), TableID (FK) | Table bookings|
-| Order       |  OrderID (PK), OrderDate, OrderTime, Status, ReservationID (FK)| Orders linked to reservations|
-| Dish       |  DishID (PK), DishName, Description, Price, CategoryID (FK)| Menu items|
-|  Bill      | BillID (PK), BillDate, TotalAmount, ServiceCharge, Tax, Status, ReservationID (FK)|Final bill per reservation|
-| Assignment       | AssignmentID (PK), WaiterID (FK), ReservationID (FK)|Resolves Waiter–Reservation|
-
-### Relationships and Constraints
-
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|  Customer–Reservation            |   1:N         |  Mandatory for Reservation, Optional for Customer             |   One customer can have many reservations    |
-|  Reservation–Table            |    1:N        |  Mandatory for Reservation, Optional for Table             |  Each reservation is for one table     |
-|   Order–Dish           |      M:N      |    Mandatory for Order_Item, Optional for Order/Dish   |  An order can include many dishes     |
-|   Reservation–Bill           |  1:1          | Mandatory for Bill, Optional for Reservation              | One bill per reservation      |
-|   Waiter–Reservation           |   M:N         | Mandatory for Assignment, Optional for Waiter/Reservation              | Multiple waiters can serve a reservation      |
+![WhatsApp Image 2025-09-27 at 09 33 23_6d92e0ec](https://github.com/user-attachments/assets/650331d1-d4d0-44a3-9955-cba44102e6a2)
 
 
-### Assumptions
-- Walk-in customers are still recorded
-- One bill per reservation
-- Split payments not modeled; could extend with a Payment entity.
+
+### Entities and Attributes:
 
 
+
+| Entity       | Attributes (PK, FK)                                                                 | Notes                                              |
+|--------------|--------------------------------------------------------------------------------------|---------------------------------------------------|
+| Customer     | CustomerID (PK), Name, ContactInfo                                                   | Details of the restaurant's customers             |
+| Table        | TableID (PK), TableNumber, Capacity, Status                                          | Restaurant table details (e.g., available, occupied) |
+| Reservation  | ReservationID (PK), CustomerID (FK), TableID (FK), ResDate, ResTime, NumGuests, Status | Details for a table reservation                   |
+| Waiter       | WaiterID (PK), Name, ContactInfo                                                     | Details of restaurant staff serving tables        |
+| Dish         | DishID (PK), DishName, Category, Price                                               | Menu items (e.g., Starter, Main, Dessert)         |
+| Order        | OrderID (PK), ReservationID (FK), OrderDate, OrderTime, Status                       | A customer's food order                           |
+| Bill         | BillID (PK), ReservationID (FK), BillDate, TotalAmount, ServiceCharge, Status        | Financial bill for a reservation                  |
+| OrderLine    | OrderID (FK, PK), DishID (FK, PK), Quantity, Subtotal                                | Details of dishes within an order                 |
+
+
+### Relationships and Constraints:
+
+
+
+| Relationship                  | Cardinality                                      | Participation                              | Notes                                                                 |
+|-------------------------------|-------------------------------------------------|-------------------------------------------|----------------------------------------------------------------------|
+| Customer MAKES Reservation FOR Table | 1:N for Customer–Reservation, 1:N for Table–Reservation | Partial (Customer, Table), Total (Reservation) | A customer can make many reservations; a table can have many reservations over time. Each reservation is for one customer and one table. |
+| Reservation IS SERVED BY Waiter      | M:N                                         | Partial (Reservation, Waiter)              | A reservation can be served by multiple waiters; a waiter can serve multiple reservations. |
+| Reservation PLACES Order             | 1:N                                         | Total (Order), Partial (Reservation)       | Each order is linked to one reservation; a reservation can have multiple orders. |
+| Order CONTAINS Dish                  | M:N                                         | Total (OrderLine), Partial (Order, Dish)   | An order can contain multiple dishes; a dish can be in multiple orders. |
+| Reservation GENERATES Bill           | 1:1                                         | Total (Bill), Partial (Reservation)        | Each reservation generates exactly one bill. |
+
+
+
+### Assumptions:
+
+- Table Assignment: A reservation is assigned to one specific table. Walk-in customers might create a reservation record on the spot.
+- Order-Reservation Link: Every order must be associated with an existing reservation.
+- Dish Category: Each dish belongs to a single category.
+- Bill Generation: A single bill is generated per reservation, encompassing all orders for that reservation.
+- Waiter Assignment: Waiters can be assigned to multiple reservations, and a single reservation might have multiple waiters over its duration (e.g., shift changes).
+- All IDs are unique primary keys.
 ---
 
 ## Instructions for Students
