@@ -104,124 +104,203 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
---
--- Paste Question 1 here
+Create a new table named products with the following specifications:
+```
+product_id as INTEGER and primary key.
+product_name as TEXT and not NULL.
+list_price as DECIMAL (10, 2) and not NULL.
+discount as DECIMAL (10, 2) with a default value of 0 and not NULL.
+A CHECK constraint at the table level to ensure:
+list_price is greater than or equal to discount
+discount is greater than or equal to 0
+list_price is greater than or equal to 0
+```
 
-```sql
--- Paste your SQL code below for Question 1
+```
+CREATE TABLE products(
+product_id INT PRIMARY KEY, 
+product_name TEXT NOT NULL, 
+list_price DECIMAL(10,2) NOT NULL,
+discount DECIMAL(10,2) 
+DEFAULT 0,
+CONSTRAINT products
+CHECK(
+list_price>=discount AND
+discount>=0 AND
+list_price>=0
+)
+);
 ```
 
 **Output:**
+<img width="1328" height="219" alt="image" src="https://github.com/user-attachments/assets/68dc0a97-21d1-486f-b3fb-7efc0400221d" />
 
-![Output1](output.png)
 
 **Question 2**
----
--- Paste Question 2 here
+Insert a student with RollNo 201, Name David Lee, Gender M, Subject Physics, and MARKS 92 into the Student_details table.
 
-```sql
--- Paste your SQL code below for Question 2
+```
+INSERT INTO Student_details (RollNo,Name,Gender,Subject,MARKS)
+VALUES (201,'David Lee','M','Physics',92);
 ```
 
 **Output:**
+<img width="1017" height="181" alt="image" src="https://github.com/user-attachments/assets/6560a1f4-6918-4b7a-b010-8f02b08d28c1" />
 
-![Output2](output.png)
 
 **Question 3**
----
--- Paste Question 3 here
-
-```sql
--- Paste your SQL code below for Question 3
+Write a SQL Query to add an attribute designation in the employee table with the data type VARCHAR(50).
+```
+ALTER TABLE employee
+ADD COLUMN designation varchar(50);
 ```
 
 **Output:**
-
-![Output3](output.png)
+<img width="1837" height="371" alt="image" src="https://github.com/user-attachments/assets/79d5f7f4-ca54-4d88-af6d-b4e7f59f754f" />
 
 **Question 4**
----
--- Paste Question 4 here
+Create a table named Invoices with the following constraints:
+```
+InvoiceID as INTEGER should be the primary key.
+InvoiceDate as DATE.
+DueDate as DATE should be greater than the InvoiceDate.
+Amount as REAL should be greater than 0.
+```
 
-```sql
--- Paste your SQL code below for Question 4
+```
+CREATE TABLE Invoices(
+InvoiceID int PRIMARY KEY,
+InvoiceDate DATE,
+DueDate DATE,
+Amount REAL CHECK (Amount>0),
+CHECK(DueDate>InvoiceDate)
+);
+
 ```
 
 **Output:**
+<img width="1882" height="368" alt="image" src="https://github.com/user-attachments/assets/9d16f465-2436-4cce-94ca-f40c9f8da0fe" />
 
-![Output4](output.png)
 
 **Question 5**
----
--- Paste Question 5 here
-
-```sql
--- Paste your SQL code below for Question 5
+Write a SQL query for adding a new column named "email" with the datatype VARCHAR(100) to the  table "customer" 
 ```
+Sample table: customer
 
+ customer_id |   cust_name    |    city    | grade | salesman_id 
+-------------+----------------+------------+-------+-------------
+        3002 | Nick Rimando   | New York   |   100 |        5001
+        3007 | Brad Davis     | New York   |   200 |        5001
+        3005 | Graham Zusi    | California |   200 |        5002
+```
+```
+ALTER TABLE customer
+ADD COLUMN email VARCHAR(100);
+```
 **Output:**
+<img width="1470" height="340" alt="image" src="https://github.com/user-attachments/assets/890355a7-815d-4e9d-96d6-3a4e8b12fc55" />
 
-![Output5](output.png)
 
 **Question 6**
----
--- Paste Question 6 here
+Insert all customers from Old_customers into Customers
 
-```sql
--- Paste your SQL code below for Question 6
+Table attributes are CustomerID, Name, Address, Email
+
+```
+INSERT INTO Customers(CustomerID, Name, Address, Email)
+SELECT CustomerID, Name, Address, Email FROM Old_customers;
 ```
 
 **Output:**
+<img width="1641" height="386" alt="image" src="https://github.com/user-attachments/assets/ec484436-cdc0-4b42-b0b8-8d6b9c59743e" />
 
-![Output6](output.png)
 
 **Question 7**
----
--- Paste Question 7 here
+In the Products table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+```
+ProductID   Name              Category    Price       Stock
+----------  ---------------   ----------  ----------  ----------
+106         Fitness Tracker   Wearables
+107         Laptop            Electronics  999.99      50
+108         Wireless Earbuds  Accessories              100
+```
 
-```sql
--- Paste your SQL code below for Question 7
+```
+INSERT INTO Products(ProductID,Name,Category,Price,Stock)
+VALUES(106,'Fitness Tracker','Wearables',NULL,NULL),
+(107,'Laptop','Electronic',999.99,50),
+(108,'Wireless Earbud','Accessorie',NULL,100);
 ```
 
 **Output:**
 
-![Output7](output.png)
 
 **Question 8**
----
--- Paste Question 8 here
+Create a table named Employees with the following constraints:
+```
+EmployeeID should be the primary key.
+FirstName and LastName should be NOT NULL.
+Email should be unique.
+Salary should be greater than 0.
+DepartmentID should be a foreign key referencing the Departments table.
+```
 
-```sql
--- Paste your SQL code below for Question 8
+```
+CREATE TABLE Employees(
+EmployeeID INT PRIMARY KEY,
+FirstName TEXT NOT NULL, 
+LastName TEXT NOT NULL,
+Email TEXT UNIQUE,
+Salary INT CHECK(Salary>0),
+DepartmentID INT,
+FOREIGN KEY(DepartmentID) REFERENCES Departments);
 ```
 
 **Output:**
-
-![Output8](output.png)
+<img width="1607" height="394" alt="image" src="https://github.com/user-attachments/assets/cb3422d4-814a-4e1b-8938-eeb842ba6f05" />
 
 **Question 9**
----
--- Paste Question 9 here
-
-```sql
--- Paste your SQL code below for Question 9
+Create a table named Departments with the following columns:
+```
+DepartmentID as INTEGER
+DepartmentName as TEXT
+```
+```
+CREATE TABLE Departments(
+DepartmentID  INTEGER,
+DepartmentName  TEXT);
 ```
 
 **Output:**
+![Uploading image.png…]()
 
-![Output9](output.png)
 
 **Question 10**
----
--- Paste Question 10 here
+Create a new table named item with the following specifications and constraints:
+```
+item_id as TEXT and as primary key.
+item_desc as TEXT.
+rate as INTEGER.
+icom_id as TEXT with a length of 4.
+icom_id is a foreign key referencing com_id in the company table.
+The foreign key should cascade updates and deletes.
+item_desc and rate should not accept NULL.
+```
 
-```sql
--- Paste your SQL code below for Question 10
+```
+CREATE TABLE item(
+item_id TEXT PRIMARY KEY,
+item_desc TEXT NOT NULL,
+rate INTEGER NOT NULL,
+icom_id TEXT CHECK (length(icom_id)=4),
+FOREIGN KEY(icom_id) REFERENCES company(com_id) ON UPDATE CASCADE
+ON DELETE CASCADE);
 ```
 
 **Output:**
+![Uploading image.png…]()
 
-![Output10](output.png)
+
 
 
 ## RESULT
