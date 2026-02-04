@@ -104,7 +104,7 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
-Create a new table named products with the following specifications:
+### Create a new table named products with the following specifications:
 ```
 product_id as INTEGER and primary key.
 product_name as TEXT and not NULL.
@@ -137,7 +137,7 @@ list_price>=0
 
 
 **Question 2**
-Insert a student with RollNo 201, Name David Lee, Gender M, Subject Physics, and MARKS 92 into the Student_details table.
+### Insert a student with RollNo 201, Name David Lee, Gender M, Subject Physics, and MARKS 92 into the Student_details table.
 
 ```
 INSERT INTO Student_details (RollNo,Name,Gender,Subject,MARKS)
@@ -149,7 +149,7 @@ VALUES (201,'David Lee','M','Physics',92);
 
 
 **Question 3**
-Write a SQL Query to add an attribute designation in the employee table with the data type VARCHAR(50).
+### Write a SQL Query to add an attribute designation in the employee table with the data type VARCHAR(50).
 ```
 ALTER TABLE employee
 ADD COLUMN designation varchar(50);
@@ -159,7 +159,7 @@ ADD COLUMN designation varchar(50);
 <img width="1837" height="371" alt="image" src="https://github.com/user-attachments/assets/79d5f7f4-ca54-4d88-af6d-b4e7f59f754f" />
 
 **Question 4**
-Create a table named Invoices with the following constraints:
+### Create a table named Invoices with the following constraints:
 ```
 InvoiceID as INTEGER should be the primary key.
 InvoiceDate as DATE.
@@ -183,7 +183,7 @@ CHECK(DueDate>InvoiceDate)
 
 
 **Question 5**
-Write a SQL query for adding a new column named "email" with the datatype VARCHAR(100) to the  table "customer" 
+### Write a SQL query for adding a new column named "email" with the datatype VARCHAR(100) to the  table "customer" 
 ```
 Sample table: customer
 
@@ -202,9 +202,9 @@ ADD COLUMN email VARCHAR(100);
 
 
 **Question 6**
-Insert all customers from Old_customers into Customers
+### Insert all customers from Old_customers into Customers
 
-Table attributes are CustomerID, Name, Address, Email
+### Table attributes are CustomerID, Name, Address, Email
 
 ```
 INSERT INTO Customers(CustomerID, Name, Address, Email)
@@ -216,7 +216,7 @@ SELECT CustomerID, Name, Address, Email FROM Old_customers;
 
 
 **Question 7**
-In the Products table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+### In the Products table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
 ```
 ProductID   Name              Category    Price       Stock
 ----------  ---------------   ----------  ----------  ----------
@@ -233,10 +233,11 @@ VALUES(106,'Fitness Tracker','Wearables',NULL,NULL),
 ```
 
 **Output:**
+<img width="1455" height="323" alt="image" src="https://github.com/user-attachments/assets/79a526ce-929b-4864-a73d-84a5ee2f7bae" />
 
 
 **Question 8**
-Create a table named Employees with the following constraints:
+### Create a table named Employees with the following constraints:
 ```
 EmployeeID should be the primary key.
 FirstName and LastName should be NOT NULL.
@@ -260,7 +261,7 @@ FOREIGN KEY(DepartmentID) REFERENCES Departments);
 <img width="1607" height="394" alt="image" src="https://github.com/user-attachments/assets/cb3422d4-814a-4e1b-8938-eeb842ba6f05" />
 
 **Question 9**
-Create a table named Departments with the following columns:
+### Create a table named Departments with the following columns:
 ```
 DepartmentID as INTEGER
 DepartmentName as TEXT
@@ -272,11 +273,12 @@ DepartmentName  TEXT);
 ```
 
 **Output:**
-![Uploading image.png…]()
+<img width="1600" height="361" alt="image" src="https://github.com/user-attachments/assets/2464c722-734c-414d-9c62-4e0b8038773a" />
+
 
 
 **Question 10**
-Create a new table named item with the following specifications and constraints:
+### Create a new table named item with the following specifications and constraints:
 ```
 item_id as TEXT and as primary key.
 item_desc as TEXT.
@@ -298,8 +300,7 @@ ON DELETE CASCADE);
 ```
 
 **Output:**
-![Uploading image.png…]()
-
+<img width="1495" height="381" alt="image" src="https://github.com/user-attachments/assets/cf0d8fb7-49e1-4728-a70c-940752d7355d" />
 
 
 
