@@ -36,8 +36,8 @@ END;
 
 **Expected Output:**  
 Greater number is: 80
-<img width="1032" height="786" alt="443119143-ed036e8e-2d85-4589-a443-427d24eaa931" src="https://github.com/user-attachments/assets/c77d5a89-a622-4c5f-870c-4da14ec45aa8" />
-<img width="1032" height="786" alt="443119143-ed036e8e-2d85-4589-a443-427d24eaa931" src="https://github.com/user-attachments/assets/e983a6fe-47eb-4f07-8299-d5f8f3f78820" />
+<img width="1032" height="786" src="https://github.com/user-attachments/assets/c77d5a89-a622-4c5f-870c-4da14ec45aa8" />
+
 
 ---
 
@@ -52,7 +52,6 @@ Greater number is: 80
 **Expected Output:**  
 Sum of first 10 natural numbers is: 55
 <img width="1022" height="790" alt="443116314-6d750a06-d53e-4eac-ba06-4a9506019715" src="https://github.com/user-attachments/assets/468a0c4e-acc9-47d1-a8cd-b19be884ed33" />
-<img width="1022" height="790" alt="443116314-6d750a06-d53e-4eac-ba06-4a9506019715" src="https://github.com/user-attachments/assets/854b05e4-65ba-424b-a243-d448e5d6b208" />
 
 ---
 
@@ -68,7 +67,6 @@ Sum of first 10 natural numbers is: 55
 n = 7  
 Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8
 <img width="1055" height="789" alt="443117617-dadbc100-6d1d-433a-b8cc-b4a97211c783" src="https://github.com/user-attachments/assets/71c9811d-e501-4dac-8a97-6b3820f8525f" />
-<img width="1055" height="789" alt="443117617-dadbc100-6d1d-433a-b8cc-b4a97211c783" src="https://github.com/user-attachments/assets/f3b97725-278e-43fa-a647-6a82c489b89f" />
 
 ---
 
@@ -83,7 +81,6 @@ Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8
 n = 1535  
 Reversed number is 5351
 <img width="1055" height="790" alt="443117956-94ec0e84-f394-4047-9173-f857ff481292" src="https://github.com/user-attachments/assets/3d2a2a51-e6bf-4929-b8f1-e1f01e9deccb" />
-<img width="1055" height="790" alt="443117956-94ec0e84-f394-4047-9173-f857ff481292" src="https://github.com/user-attachments/assets/669e951c-cb19-45f2-aa4b-594cb6d9917d" />
 
 ---
 
@@ -98,8 +95,6 @@ Reversed number is 5351
 a = 10, b = 9, c = 15  
 Largest of three number is 15
 <img width="1062" height="787" alt="443118288-09b31f05-92de-4fc5-b867-97dbdac67e7f" src="https://github.com/user-attachments/assets/ccdf2bce-f05c-4fb7-9b45-538ad0038d70" />
-<img width="1062" height="787" alt="443118288-09b31f05-92de-4fc5-b867-97dbdac67e7f" src="https://github.com/user-attachments/assets/46bbacc0-c8ae-4eee-a9c9-f96f7249ac47" />
-
 
 ## RESULT
 Thus, the PL/SQL programs using variables, conditionals, and loops were executed successfully.
